@@ -18,7 +18,7 @@ public enum Squall {
     /// Initialize the internal state of the generator.
     ///
     /// - parameter seed: The value used to generate the intial state. Should be chosen at random.
-    static func seed(seed: UInt32) {
+    public static func seed(seed: UInt32) {
         Squall.generator = MersenneTwisterGenerator(seed: seed)
     }
     
@@ -27,7 +27,7 @@ public enum Squall {
     /// Uses the current time as the seed. Should not overflow until February 2106.
     ///
     /// Caution when spawning multiple processes within close temporal proximity.
-    static func seed() {
+    public static func seed() {
         let epochTime = abs(NSDate().timeIntervalSince1970)
         let seed = UInt32(epochTime)
         Squall.seed(seed)
@@ -36,7 +36,7 @@ public enum Squall {
     /// Generates a random `UInt32`.
     ///
     /// - returns: The next `UInt32` in the sequence
-    static func random() -> UInt32 {
+    public static func random() -> UInt32 {
         return generator.next()!
     }
 }
@@ -47,7 +47,7 @@ extension Squall {
     /// Generates a random `UInt64`.
     ///
     /// - returns: The next two `UInt32`'s in the sequence concatenated into a `UInt64`
-    static func random() -> UInt64 {
+    public static func random() -> UInt64 {
         let upper = UInt64(generator.next()!) << 32
         let lower = UInt64(generator.next()!)
         return upper + lower
@@ -58,7 +58,7 @@ extension Squall {
     /// - parameter length: The number of bytes of random data to return.
     ///
     /// - returns: The next `length` random bytes. Or nil if length <= 0.
-    static func randomData(length: Int) -> NSData? {
+    public static func randomData(length: Int) -> NSData? {
         guard length > 0 else { return nil }
         // Finding a contiguous stretch of memory much longer than this might not be possible, especially on iOS
         precondition(length < 10485760, "Buffer would exceed 10mb")
@@ -108,7 +108,7 @@ extension Squall {
     /// - parameter upper: Upper bound of uniform distribution. Defaults to 1.
     ///
     /// - returns: A pseudo-random number from the range [lower, upper).
-    static func uniform(lower: Double = 0, _ upper: Double = 1) -> Double {
+    public static func uniform(lower: Double = 0, _ upper: Double = 1) -> Double {
         let f = Double(generator.next()!) / Double(generator.maxValue)
         let d = upper - lower
         return f*d + lower
@@ -121,7 +121,7 @@ extension Squall {
     /// - parameter upper: Upper bound of uniform distribution. Defaults to 1.
     ///
     /// - returns: A pseudo-random number from the range [lower, upper).
-    static func uniform(lower: Float = 0, _ upper: Float = 1) -> Float {
+    public static func uniform(lower: Float = 0, _ upper: Float = 1) -> Float {
         let f = Float(generator.next()!) / Float(generator.maxValue)
         let d = upper - lower
         return f*d + lower
@@ -138,7 +138,7 @@ extension Squall {
     /// - parameter sigma: The standard deviation of the distribution. Defaults to 1.
     ///
     /// - returns: A pseudo-random number from a Gaussian distribution.
-    static func gaussian(average mu: Double = 0, sigma: Double = 1) -> Double {
+    public static func gaussian(average mu: Double = 0, sigma: Double = 1) -> Double {
         let A = Squall.uniform() as Double
         let B = Squall.uniform() as Double
         let X = sqrt(-2*log(A))*cos(2*M_PI*B)
@@ -152,7 +152,7 @@ extension Squall {
     /// - parameter sigma: The standard deviation of the distribution. Defaults to 1.
     ///
     /// - returns: A pseudo-random number from a Gaussian distribution.
-    static func gaussian(average mu: Float = 0, sigma: Float = 1) -> Float {
+    public static func gaussian(average mu: Float = 0, sigma: Float = 1) -> Float {
         let A = Squall.uniform() as Float
         let B = Squall.uniform() as Float
         let X = sqrt(-2*log(A))*cos(2*Float(M_PI)*B)
