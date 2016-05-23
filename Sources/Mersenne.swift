@@ -6,7 +6,7 @@ Kai Wells, http://kaiwells.me
 
 /// Multiply two `UInt32`'s and discard the overflow.
 ///
-private func safeMultiply(a: UInt32, _ b: UInt32) -> UInt32 {
+private func safeMultiply(_ a: UInt32, _ b: UInt32) -> UInt32 {
     let ah = UInt64(a & 0xFFFF0000) >> 16
     let al = UInt64(a & 0x0000FFFF)
     let bh = UInt64(b & 0xFFFF0000) >> 16
