@@ -109,7 +109,7 @@ extension Squall {
     ///
     /// - returns: A pseudo-random number from the range [lower, upper).
     public static func uniform(lower: Double = 0, _ upper: Double = 1) -> Double {
-        let f = Double(generator.next()!) / Double(generator.maxValue)
+        let f = Double(Squall.random() as UInt64) / Double(UINT64_MAX)
         let d = upper - lower
         return f*d + lower
     }
@@ -122,7 +122,7 @@ extension Squall {
     ///
     /// - returns: A pseudo-random number from the range [lower, upper).
     public static func uniform(lower: Float = 0, _ upper: Float = 1) -> Float {
-        let f = Float(generator.next()!) / Float(generator.maxValue)
+        let f = Float(Squall.random() as UInt32) / Float(UINT32_MAX)
         let d = upper - lower
         return f*d + lower
     }
