@@ -11,9 +11,19 @@ Implementation of the MT algorithm for 32-bit integers.
 Wrapper around the MT implementation that provides random values for several types:
 
 - UInt32
-- UInt64
 - Float
 - Double
-- NSData
 
 Provides both uniform and Gaussian (normal) distributions for Float and Double.
+
+## Changelog
+
+### 1.1 - February 14, 2017
+
+- Updated for Swift 3.1
+- Removed `Squall.random() -> UInt64`
+- Removed `Squall.randomData()` because the syntax for `UnsafeMutablePointer` changed.
+
+### 1.0 - May 21, 2016
+
+- Initial Release
