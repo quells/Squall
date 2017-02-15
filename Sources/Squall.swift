@@ -39,6 +39,15 @@ public enum Squall {
     public static func random() -> UInt32 {
         return generator.next()!
     }
+
+    /// Generates a random `UInt64`.
+    ///
+    /// - returns: The next `UInt64` in the sequence
+    public static func random() -> UInt64 {
+        let hi = UInt64(generator.next()!) << 32
+        let lo = UInt64(generator.next()!)
+        return hi & lo
+    }
 }
 
 // MARK: Uniform Distribution
