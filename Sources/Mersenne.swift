@@ -6,7 +6,7 @@ Kai Wells, http://kaiwells.me
 
 /// Multiply two `UInt32`'s and discard the overflow.
 ///
-internal func safeMultiply(_ a: UInt32, _ b: UInt32) -> UInt32 {
+fileprivate func discardMultiply(_ a: UInt32, _ b: UInt32) -> UInt32 {
     let ah = UInt64(a & 0xFFFF0000) >> 16
     let al = UInt64(a & 0x0000FFFF)
     let bh = UInt64(b & 0xFFFF0000) >> 16
@@ -52,7 +52,7 @@ final internal class MersenneTwisterGenerator: IteratorProtocol {
         var x = [seed]
         for i in 1..<n {
             let prev = x[i-1]
-            let c = safeMultiply(f, prev ^ (prev >> (w-2))) + UInt32(i)
+            let c = discardMultiply(f, prev ^ (prev >> (w-2))) + UInt32(i)
             x.append(c)
         }
         self.state = x
