@@ -17,7 +17,38 @@ Wrapper around the MT implementation that provides random values for several typ
 
 Provides both uniform and Gaussian (normal) distributions for Float and Double.
 
+### Thread Safety
+
+Use `Squall` if parallel execution speed is not important. It is a global singleton with a serial queue.
+
+```swift
+let queues: [DispatchQueue] = // N DispatchQueues
+for i in 0 ..< N {
+	queues[i].async {
+		// do stuff with Squall.random()
+	}
+}
+```
+
+Use `Gust` for parallel, independent PRNG. **NOTE** that a unique offset must be given given if multiple instances are created in close temporal proximity in order to preserve independence of results.
+
+```swift
+let queues: [DispatchQueue] = // N DispatchQueues
+for i in 0 ..< N {
+	queues[i].async {
+		let g_i = Gust(offset: UInt32(i))
+		// do stuff with g_i.random()
+	}
+}
+```
+
 ## Changelog
+
+### 1.2 - February 19, 2017
+
+- Changed `safeMultiply()` to `discardMultiply` to better describe what the function does.
+- Added a serial queue to `Squall` for thread safety.
+- Added `Gust`: a mirror of `Squall` that is not thread safe but allows parallel execution.
 
 ### 1.1 - February 14, 2017
 
