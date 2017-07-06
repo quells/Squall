@@ -7,7 +7,7 @@ Kai Wells, http://kaiwells.me
 import Foundation
 
 // DispatchQueue not avaliable on linux
-#if !os(Linux)
+#if os(macOS)
 
 /// Provides a wrapper around a Mersenne Twister implementation.
 ///
