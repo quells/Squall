@@ -6,6 +6,9 @@ Kai Wells, http://kaiwells.me
 
 import Foundation
 
+// DispatchQueue not avaliable on linux
+#if !os(Linux)
+
 /// Provides a wrapper around a Mersenne Twister implementation.
 ///
 /// Remember to seed with some value.
@@ -145,6 +148,8 @@ public enum Squall {
         return result
     }
 }
+
+#endif
 
 /// Provides a wrapper around a Mersenne Twister implementation.
 ///
