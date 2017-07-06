@@ -74,7 +74,7 @@ public enum Squall {
     
     /// Prevents deadlocks
     fileprivate static func _uniform(_ lower: Double = 0, _ upper: Double = 1) -> Double {
-        let f = Double(Squall._random() as UInt64) / Double(UINT64_MAX)
+        let f = Double(Squall._random() as UInt64) / Double(UInt64.max)
         return Uniform(lower: lower, upper: upper, ratio: f)
     }
     
@@ -95,7 +95,7 @@ public enum Squall {
     
     /// Prevents deadlocks
     fileprivate static func _uniform(_ lower: Float = 0, _ upper: Float = 1) -> Float {
-        let f = Float(Squall._random() as UInt32) / Float(UINT32_MAX)
+        let f = Float(Squall._random() as UInt32) / Float(UInt32.max)
         return Uniform(lower: lower, upper: upper, ratio: f)
     }
     
@@ -199,7 +199,7 @@ public final class Gust {
     ///
     /// - returns: A pseudo-random number from the range [lower, upper).
     public func uniform(lower: Double = 0, _ upper: Double = 1) -> Double {
-        let f = Double(random() as UInt64) / Double(UINT64_MAX)
+        let f = Double(random() as UInt64) / Double(UInt64.max)
         return Uniform(lower: lower, upper: upper, ratio: f)
     }
     
@@ -211,7 +211,7 @@ public final class Gust {
     ///
     /// - returns: A pseudo-random number from the range [lower, upper).
     public func uniform(lower: Float = 0, _ upper: Float = 1) -> Float {
-        let f = Float(random() as UInt32) / Float(UINT32_MAX)
+        let f = Float(random() as UInt32) / Float(UInt32.max)
         return Uniform(lower: lower, upper: upper, ratio: f)
     }
     
