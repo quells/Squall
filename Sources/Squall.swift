@@ -256,11 +256,11 @@ fileprivate func Uniform<T: FloatingPoint>(lower: T, upper: T, ratio: T) -> T {
 }
 
 fileprivate func Gaussian(mu: Double, sigma: Double, A: Double, B: Double) -> Double {
-    let X = sqrt(-2*log(A))*cos(2*M_PI*B)
+    let X = sqrt(-2*log(A))*cos(2*Double.pi*B)
     return X*sigma + mu
 }
 
 fileprivate func Gaussian(mu: Float, sigma: Float, A: Float, B: Float) -> Float {
-    let X = sqrt(-2*log(A))*cos(2*Float(M_PI)*B)
+    let X = sqrt(-2*log(A))*cos(2*Float(Double.pi)*B)
     return X*sigma + mu
 }
