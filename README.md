@@ -46,6 +46,7 @@ for i in 0 ..< N {
 
 ### 1.3 - October 4, 2018
 
+- Added OS guards around `Squall` because `DispatchQueue` is not always available on Linux systems.
 - Added conformance to `RandomNumberGenerator` to `Gust` so that it can be used with the unified Swift 4.2 random methods.
 
 ### 1.2.1 - June 6, 2018
