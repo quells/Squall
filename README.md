@@ -44,6 +44,10 @@ for i in 0 ..< N {
 
 ## Changelog
 
+### 1.2.1 - June 6, 2018
+
+- Changed instances of `M_PI` to `Double.pi` and `Float.pi` - credit to @jmmaloney4
+
 ### 1.2 - February 19, 2017
 
 - Changed `safeMultiply()` to `discardMultiply` to better describe what the function does.
