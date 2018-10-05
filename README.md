@@ -44,6 +44,10 @@ for i in 0 ..< N {
 
 ## Changelog
 
+### 1.3 - October 4, 2018
+
+- Added conformance to `RandomNumberGenerator` to `Gust` so that it can be used with the unified Swift 4.2 random methods.
+
 ### 1.2.1 - June 6, 2018
 
 - Changed instances of `M_PI` to `Double.pi` and `Float.pi` - credit to @jmmaloney4

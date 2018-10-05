@@ -6,6 +6,9 @@ Kai Wells, http://kaiwells.me
 
 import Foundation
 
+// DispatchQueue not avaliable on linux
+#if os(macOS)
+
 /// Provides a wrapper around a Mersenne Twister implementation.
 ///
 /// Remember to seed with some value.
@@ -71,7 +74,7 @@ public enum Squall {
     
     /// Prevents deadlocks
     fileprivate static func _uniform(_ lower: Double = 0, _ upper: Double = 1) -> Double {
-        let f = Double(Squall._random() as UInt64) / Double(UINT64_MAX)
+        let f = Double(Squall._random() as UInt64) / Double(UInt64.max)
         return Uniform(lower: lower, upper: upper, ratio: f)
     }
     
@@ -92,7 +95,7 @@ public enum Squall {
     
     /// Prevents deadlocks
     fileprivate static func _uniform(_ lower: Float = 0, _ upper: Float = 1) -> Float {
-        let f = Float(Squall._random() as UInt32) / Float(UINT32_MAX)
+        let f = Float(Squall._random() as UInt32) / Float(UInt32.max)
         return Uniform(lower: lower, upper: upper, ratio: f)
     }
     
@@ -146,6 +149,8 @@ public enum Squall {
     }
 }
 
+#endif
+
 /// Provides a wrapper around a Mersenne Twister implementation.
 ///
 /// Remember to seed with some value.
@@ -194,7 +199,7 @@ public final class Gust {
     ///
     /// - returns: A pseudo-random number from the range [lower, upper).
     public func uniform(lower: Double = 0, _ upper: Double = 1) -> Double {
-        let f = Double(random() as UInt64) / Double(UINT64_MAX)
+        let f = Double(random() as UInt64) / Double(UInt64.max)
         return Uniform(lower: lower, upper: upper, ratio: f)
     }
     
@@ -206,7 +211,7 @@ public final class Gust {
     ///
     /// - returns: A pseudo-random number from the range [lower, upper).
     public func uniform(lower: Float = 0, _ upper: Float = 1) -> Float {
-        let f = Float(random() as UInt32) / Float(UINT32_MAX)
+        let f = Float(random() as UInt32) / Float(UInt32.max)
         return Uniform(lower: lower, upper: upper, ratio: f)
     }
     
@@ -234,6 +239,16 @@ public final class Gust {
         let A = uniform() as Float
         let B = uniform() as Float
         return Gaussian(mu: mu, sigma: sigma, A: A, B: B)
+    }
+}
+
+extension Gust: RandomNumberGenerator {
+    /// Generates a random `UInt64`.
+    /// Conforms `Gust` to `RandomNumberGenerator`.
+    ///
+    /// - returns: The next two `UInt32`'s in the sequence concatenated bitwise
+    public func next() -> UInt64 {
+        return random()
     }
 }
 
