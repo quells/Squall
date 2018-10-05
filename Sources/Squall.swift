@@ -242,6 +242,16 @@ public final class Gust {
     }
 }
 
+extension Gust: RandomNumberGenerator {
+    /// Generates a random `UInt64`.
+    /// Conforms `Gust` to `RandomNumberGenerator`.
+    ///
+    /// - returns: The next two `UInt32`'s in the sequence concatenated bitwise
+    public func next() -> UInt64 {
+        return random()
+    }
+}
+
 // MARK: Shared Utilities
 
 fileprivate func SeedForTime() -> UInt32 {
