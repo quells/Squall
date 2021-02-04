@@ -85,7 +85,7 @@ final internal class MersenneTwisterGenerator: IteratorProtocol {
         y = y ^ ((y >> u) & d)
         y = y ^ ((y << s) & b)
         y = y ^ ((y << t) & c)
-        y = y ^ (y >> 1)
+        y = y ^ (y >> l)
 
         index += 1
         return y
