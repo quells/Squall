@@ -44,6 +44,10 @@ for i in 0 ..< N {
 
 ## Changelog
 
+### 1.3.1 - February 4, 2021
+
+- Fixed typo in Mersenne generator (ht @barrypress).
+
 ### 1.3 - October 4, 2018
 
 - Added OS guards around `Squall` because `DispatchQueue` is not always available on Linux systems.
