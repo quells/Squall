@@ -44,6 +44,10 @@ for i in 0 ..< N {
 
 ## Changelog
 
+### 1.3.2 - February 5, 2021
+
+- Fixed two integer overflow exceptions which could occur during initialization (ht @barrypress).
+
 ### 1.3.1 - February 4, 2021
 
 - Fixed typo in Mersenne generator (ht @barrypress).
