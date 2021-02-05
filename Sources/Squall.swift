@@ -173,7 +173,7 @@ public final class Gust {
     ///
     /// Change offset when spawning multiple processes within close temporal proximity.
     public init(offset: UInt32 = 0) {
-        let seed = SeedForTime() + offset
+        let (seed, _) = offset.addingReportingOverflow(SeedForTime())
         self.generator = MersenneTwisterGenerator(seed: seed)
     }
     
