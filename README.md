@@ -44,6 +44,10 @@ for i in 0 ..< N {
 
 ## Changelog
 
+### 1.3.3 - March 3, 2021
+
+- Updated package.swift for use in 5.0+ projects (ht @heckj)
+
 ### 1.3.2 - February 5, 2021
 
 - Fixed two integer overflow exceptions which could occur during initialization (ht @barrypress).
